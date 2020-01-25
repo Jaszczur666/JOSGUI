@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace JOSGUI
 {
@@ -28,7 +29,10 @@ namespace JOSGUI
 
         private void FitButton_click(object sender, EventArgs e)
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             solver.FitLM(exp, out string MSG, out string latex);
+            Console.WriteLine(sw.ElapsedMilliseconds);
             textBox1.Text += MSG;
             textBox2.Text += latex;
             string uniq = DateTime.Now.ToString("yyyyMMddHHmmss");
